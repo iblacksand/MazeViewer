@@ -1,5 +1,6 @@
 var tablemade = false;
-function start() {
+var con = true;
+function start(){
 	if(document.getElementById("jsj") != null){
 		var element = document.getElementById("jsj");
 		element.parentNode.removeChild(element);
@@ -44,6 +45,10 @@ function createTable(tableData) {
   tablemade = true;
 }
 
+function messy(x,y){
+	setTimeout(changeColor, 2000, x, y);
+}
+
 function createPath(){
 	var table = document.getElementById("jsj");
 	var rows = table.getElementsByTagName("tr");
@@ -52,6 +57,14 @@ function createPath(){
 		var line = temp[i].split(",");
 		var x = line[0];
 		var y = line[1];
-		rows[parseInt(x)].cells[parseInt(y)].style.backgroundColor="#4286f4";
+		//messy(x,y);
+		//setTimeout(messy(x,y),500 * i);
+		setTimeout(changeColor,50 * i, x, y);
 	}
+}
+
+function changeColor(x, y) {
+	var table = document.getElementById("jsj");
+	var rows = table.getElementsByTagName("tr");
+	rows[parseInt(x)].cells[parseInt(y)].style.backgroundColor="#4286f4";
 }
